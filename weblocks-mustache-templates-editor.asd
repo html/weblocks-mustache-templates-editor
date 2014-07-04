@@ -4,7 +4,7 @@
   :serial t
   :description "A piece of Weblocks ui for editing mustache templates"
   :author "Olexiy Zamkoviy <olexiy.z@gmail.com>"
-  :version "0.2.1"
+  :version "0.2.2"
   :license "LLGPL"
   :depends-on (#:weblocks
                #:weblocks-cms)

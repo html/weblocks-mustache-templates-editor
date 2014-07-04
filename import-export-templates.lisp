@@ -46,6 +46,24 @@
   (weblocks-utils:delete-all 'weblocks-cms::template)
   (mapcar #'import-template (cl-fad:list-directory (get-templates-directory))))
 
+(defmethod weblocks-cms::make-widget-for-model-description ((name (eql :template)) description)
+  (let ((widget (call-next-method))
+        (fields (list 'weblocks-cms::title 'weblocks-cms::name))
+        )
+    (setf (weblocks::table-view-field-sorter (dataseq-view widget))
+          (lambda (field-1 field-2)
+
+            (let ((pos-1 (or 
+                           (position (weblocks::view-field-slot-name (weblocks::field-info-field field-1)) fields)
+                           (1+ (length fields))))
+                  (pos-2 (or 
+                           (position (weblocks::view-field-slot-name (weblocks::field-info-field field-2)) fields)
+                           (1+ (length fields)))))
+              (cond 
+                ((subtypep (type-of (weblocks::field-info-field field-1)) 'weblocks::datagrid-select-field) t)
+                ((subtypep (type-of (weblocks::field-info-field field-2)) 'weblocks::datagrid-select-field) nil)
+                (t (< pos-1 pos-2))))))
+    widget))
 
 (defmethod dataedit-update-operations ((obj gridedit) &key (delete-fn #'dataedit-delete-items-flow) (add-fn #'dataedit-add-items-flow))
   (when (equal 'weblocks-cms::template (dataseq-data-class obj))
