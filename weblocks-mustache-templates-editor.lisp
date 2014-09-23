@@ -30,3 +30,8 @@
           (weblocks-cms::keyword->symbol (getf description :name))
           :label (getf description :title)
           :present-as 'html)))))
+
+(defmethod weblocks-cms-import-export-data::serialization-link-to-data-object ((obj weblocks-cms::template))
+  `(:eval 
+     (weblocks-utils:first-by-values ',(type-of obj)
+                                     :name ,(weblocks-cms::template-name obj))))

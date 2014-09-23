@@ -4,10 +4,12 @@
   :serial t
   :description "A piece of Weblocks ui for editing mustache templates"
   :author "Olexiy Zamkoviy <olexiy.z@gmail.com>"
-  :version "0.2.2"
+  :version "0.2.3"
   :license "LLGPL"
   :depends-on (#:weblocks
-               #:weblocks-cms)
+               #:weblocks-cms 
+               #:weblocks-cms-import-export-data 
+               #:weblocks-utils)
   :components ((:file "package")
                (:file "weblocks-mustache-templates-editor")
                (:file "import-export-templates")
