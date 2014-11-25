@@ -29,7 +29,9 @@
             (with-output-to-string (s)
               (if (consp extracted-meta)
                 (setf title (getf extracted-meta :title))
-                (write-string text s))
+                (progn 
+                  (write-string first-line s)
+                  (write-char #\Newline s)))
 
               (loop for line = (read-line in nil) while line do 
                     (write-string line s)
