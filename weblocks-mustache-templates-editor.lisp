@@ -23,7 +23,11 @@
         (list 
           (weblocks-cms::keyword->symbol (getf description :name))
           :label (getf description :title)
-          :present-as 'html)))
+          :present-as 'html 
+          :reader (lambda (item)
+                    (yaclml->string 
+                      (<:span :style "height:40px;width:300px;overflow:hidden;display:block;"
+                              (<:as-is (slot-value item 'weblocks-cms::variables-descriptions))))))))
     (:form 
       (list 
         (list 
