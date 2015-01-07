@@ -16,6 +16,9 @@
       (:TITLE "Имя (для программиста)" :NAME :NAME :TYPE :STRING :OPTIONS NIL)
       (:TITLE "Название" :NAME :TITLE :TYPE :STRING :OPTIONS NIL)))))
 
+(defmacro yaclml->string (&body body)
+  `(yaclml:with-yaclml-output-to-string ,@body))
+
 (defun display-variables-html (type description model-description-list)
   (case type
     (:table 

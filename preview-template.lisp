@@ -28,11 +28,6 @@
   (let ((descriptions (template-variables-descriptions obj)))
     (cdr (assoc key descriptions :test #'string=))))
 
-
-
-(defmacro yaclml->string (&body body)
-  `(yaclml:with-yaclml-output-to-string ,@body))
-
 (defun make-view-fields-descriptions (fields)
   (loop for j in fields 
         append (weblocks-cms::get-view-fields-for-field-description j nil)))
